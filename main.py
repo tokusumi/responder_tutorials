@@ -1,14 +1,24 @@
 import responder
 import time
+from logging import config, getLogger
+from settings import LOGGER_CONF
 
 api = responder.API()
 # api = responder.API(enable_hsts=True)
-
+config.dictConfig(LOGGER_CONF)
+logger = getLogger("logger")
 
 # define pre-response proccess
 @api.route(before_request=True)
 def prepare_response(req, resp):
     resp.headers["X-Pizza"] = "42"
+
+
+# logging to file(it depends on LOGGER_CONF in settings.py)
+@api.route("/logger/")
+def logger_view(req, resp):
+    logger.info("logger success")
+    resp.text = "check logger file!"
 
 
 @api.route("/")
