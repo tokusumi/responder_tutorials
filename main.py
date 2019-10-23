@@ -2,6 +2,7 @@ import responder
 import time
 from logging import config, getLogger
 from settings import LOGGER_CONF
+from routing.views import routing_view
 
 api = responder.API()
 # api = responder.API(enable_hsts=True)
@@ -83,6 +84,9 @@ async def get_form(req, resp):
     }
     resp.content = api.template("form.html", items=items)
 
+
+# routing like django urls.py
+api.add_route("/routing", routing_view(api))
 
 if __name__ == "__main__":
     api.run()
