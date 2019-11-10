@@ -2,15 +2,13 @@ import responder
 
 
 api = responder.API(allowed_hosts=["*"], secret_key='test')
-USER_ID = 'user'
-PASSWORD = 'pass'
-MAIN_PAGE = '/main'
 
 
 @api.route(before_request=True)
 def pre_authentication(req, resp):
     """
-    authentication: the followings is valid,
+    authentication: 
+    the followings requests is valid,
     - static file
     - login view
     - correct session is equiped
@@ -66,4 +64,7 @@ async def main_view(req, resp):
 
 
 if __name__ == "__main__":
+    USER_ID = 'user'
+    PASSWORD = 'pass'
+    MAIN_PAGE = '/main'
     api.run(address='0.0.0.0', debug=True)
