@@ -39,4 +39,4 @@ def test_query_parameter(api):
 def test_hello_world_json(api):
     who = "Sam"
     r = api.requests.get(url="/{}/json".format(who))
-    assert r.get('text') == who
+    assert r.json().get('text') == who
