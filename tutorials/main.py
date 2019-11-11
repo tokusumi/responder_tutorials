@@ -4,7 +4,11 @@ import time
 api = responder.API(
     allowed_hosts=["*"],  # set allowed hosts
     secret_key='test',  # set secret_key
-    # enable_hsts=True, # redirect http to https
+    # enable_hsts=True, # redirect http to https,
+    # cors=True, # config for cors
+    # cors_params={
+    #     'allow_origins': ['https://example.org', 'https://www.example.org']
+    # }
 )
 
 # define pre-response process
